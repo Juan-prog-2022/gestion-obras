@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo}">Gestión de Obras</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header>
+    <h1>Blue Systems - Gestión de Obras</h1>
+    <nav>
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/clientes}">Clientes</a>
+        <a th:href="@{/obras}">Obras</a>
+    </nav>
+</header>
+
+<main>
+    <section th:replace="${contenido}"></section>
+</main>
+
+<footer>
+    <p>© 2025 Blue Systems - Todos los derechos reservados</p>
+</footer>
+</body>
+</html>
