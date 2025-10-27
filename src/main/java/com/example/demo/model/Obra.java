@@ -1,8 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -34,7 +33,8 @@ public class Obra {
     @Column(nullable = false)
     private String descripcion;
 
-    @NotBlank(message = "El presupuesto es obligatorio")
+    @NotNull(message = "El presupuesto es obligatorio")
+    @Positive(message = "El presupuesto debe ser mayor a cero") // ← Validación positiva
     @Column(nullable = false)
     private Double presupuesto;
 
@@ -42,7 +42,6 @@ public class Obra {
     @Size(max = 50, message = "El estado no puede tener más de 50 caracteres")
     @Column(nullable = false, length = 50)
     private String estado;
-
 
     @CreationTimestamp
     @Column(updatable = false)

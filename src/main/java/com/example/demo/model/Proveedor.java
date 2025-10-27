@@ -23,5 +23,6 @@ public class Proveedor {
     @Email(message = "Debe ser un email válido")
     private String email;
 
+    @NotBlank(message = "El teléfono es obligatorio")
     private String direccion;
 }
