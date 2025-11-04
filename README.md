@@ -9,3 +9,5 @@ Sistema de gestión de obras de construcción desarrollado con **Spring Boot**, 
 - Spring Security (login con roles)
 - MySQL
 - JPA / Hibernate
+
+- ![Pantalla principal](src/main/resources/static/img/imagen-proyecto.png)
