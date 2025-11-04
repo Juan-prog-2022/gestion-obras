@@ -1,5 +1,8 @@
 package com.example.demo.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -17,16 +20,21 @@ public class Empleado {
     @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
 
-    @NotBlank(message = "El nombre es obligatorio")
+    @NotBlank(message = "El apellido es obligatorio")
+    private String apellido;
+
+    @NotBlank(message = "El puesto es obligatorio")
     private String puesto;
 
-    @NotNull(message = "El presupuesto es obligatorio")
-    @Positive(message = "El presupuesto debe ser mayor a cero")
+    @NotNull(message = "El salario es obligatorio")
+    @Positive(message = "El salario debe ser mayor a cero")
     @Column(nullable = false)
     private double salario;
 
-    @ManyToOne
-    @JoinColumn(name = "obra_id")
-    private Obra obra;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "empleado_obra", 
+        joinColumns = @JoinColumn(name = "empleado_id"),
+        inverseJoinColumns = @JoinColumn(name = "obra_id"))
+    private List<Obra> obras = new ArrayList<>();
 
 }

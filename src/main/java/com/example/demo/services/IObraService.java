@@ -4,7 +4,7 @@ import com.example.demo.model.Obra;
 import java.util.List;
 import java.util.Optional;
 
-public interface ObraService {
+public interface IObraService {
     List<Obra> listarTodas();
     Optional<Obra> buscarPorId(Long id);
     Obra guardar(Obra obra);

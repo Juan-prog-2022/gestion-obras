@@ -25,4 +25,7 @@ public class Proveedor {
 
     @NotBlank(message = "El teléfono es obligatorio")
     private String direccion;
+
+    @NotBlank(message = "El rubro es obligatorio")
+    private String rubro;
 }

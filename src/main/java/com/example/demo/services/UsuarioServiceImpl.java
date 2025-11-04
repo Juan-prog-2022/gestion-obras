@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 
 @Service
-public class UsuarioService implements IUserService {
+public class UsuarioServiceImpl implements IUsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;

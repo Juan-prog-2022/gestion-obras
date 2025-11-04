@@ -2,36 +2,35 @@ package com.example.demo.services;
 
 import com.example.demo.model.Cliente;
 import com.example.demo.repositories.ClienteRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ClienteService {
+public class ClienteServiceImpl implements IClienteService {
 
-    private final ClienteRepository clienteRepository;
+    @Autowired
+    private ClienteRepository clienteRepository;
 
-    public ClienteService(ClienteRepository clienteRepository) {
-        this.clienteRepository = clienteRepository;
-    }
-
-    // Listar todos los clientes
+    @Override
     public List<Cliente> listarClientes() {
         return clienteRepository.findAll();
     }
 
-    // Buscar cliente por ID
-    public Optional<Cliente> obtenerClientePorId(Long id) {
+    @Override
+    public Optional<Cliente> buscarClientePorId(Long id) {
         return clienteRepository.findById(id);
     }
 
-    // Crear nuevo cliente
-    public Cliente crearCliente(Cliente cliente) {
+    @Override
+    public Cliente guardarCliente(Cliente cliente) {
         return clienteRepository.save(cliente);
     }
 
-    // Actualizar cliente existente
+    @Override
     public Optional<Cliente> actualizarCliente(Long id, Cliente clienteDetalles) {
         return clienteRepository.findById(id)
                 .map(cliente -> {
@@ -42,13 +41,8 @@ public class ClienteService {
                 });
     }
 
-    // Eliminar cliente
-    public boolean eliminarCliente(Long id) {
-        return clienteRepository.findById(id)
-                .map(cliente -> {
-                    clienteRepository.delete(cliente);
-                    return true;
-                })
-                .orElse(false);
+    @Override
+    public void eliminarCliente(Long id) {
+        clienteRepository.deleteById(id);
     }
 }

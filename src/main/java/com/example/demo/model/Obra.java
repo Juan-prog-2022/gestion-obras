@@ -7,6 +7,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -42,6 +44,9 @@ public class Obra {
     @Size(max = 50, message = "El estado no puede tener más de 50 caracteres")
     @Column(nullable = false, length = 50)
     private String estado;
+
+    @ManyToMany(mappedBy = "obras", fetch = FetchType.LAZY) 
+    private List<Empleado> empleados = new ArrayList<>();
 
     @CreationTimestamp
     @Column(updatable = false)

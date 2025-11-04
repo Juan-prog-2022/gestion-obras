@@ -1,7 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.model.Obra;
-import com.example.demo.services.ObraService;
+import com.example.demo.services.IObraService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class ObraController {
 
         @Autowired
-        private ObraService obraService;
+        private IObraService obraService;
 
         // ✅ Listar todas las obras
         @GetMapping
@@ -27,14 +27,14 @@ public class ObraController {
         }
 
          // ✅ Mostrar formulario para crear una nueva obra
-        @GetMapping("/nueva")
+        @GetMapping("/nuevaObra")
         public String mostrarFormularioNuevaObra(Model model) {
             model.addAttribute("obra", new Obra());
             model.addAttribute("titulo", "Registrar Nueva Obra");
             return "form-obra";
         }
 
-        @PostMapping("/guardar")
+        @PostMapping("/guardarObra")
         public String guardarObra(@Valid @ModelAttribute("obra") Obra obra,
                                   BindingResult result,
                                   Model model) {
@@ -49,7 +49,7 @@ public class ObraController {
         }
 
         // ✅ Editar una obra existente
-        @GetMapping("/editar/{id}")
+        @GetMapping("/editarObra/{id}")
         public String editarObra(@PathVariable Long id, Model model) {
             Optional<Obra> obraOpt = obraService.buscarPorId(id);
             if (obraOpt.isPresent()) {
@@ -62,7 +62,7 @@ public class ObraController {
         }
 
         // ✅ Eliminar una obra
-        @GetMapping("/eliminar/{id}")
+        @GetMapping("/eliminarObra/{id}")
         public String eliminarObra(@PathVariable Long id) {
             obraService.eliminar(id);
             return "redirect:/obras";

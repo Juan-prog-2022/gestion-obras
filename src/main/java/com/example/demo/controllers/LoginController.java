@@ -1,7 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.model.Usuario;
-import com.example.demo.services.UsuarioService;
+import com.example.demo.services.IUsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
 
     @Autowired
-    private UsuarioService usuarioService;
+    private IUsuarioService usuarioService;
 
     // 🔹 Mostrar página de login
     @GetMapping("/login")
@@ -46,7 +46,7 @@ public class LoginController {
         }
 
         // Guardar el usuario con contraseña encriptada y rol por defecto
-        usuarioService.registrarUsuario(usuario);
+        usuarioService.guardarUsuario(usuario);
 
         // Redirigir al login con parámetro para mensaje de éxito
         return "redirect:/login?registroExitoso";

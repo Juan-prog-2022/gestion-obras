@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio | Blue Systems</title>
+
+    <!-- ✅ Bootstrap -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <!-- ✅ Bootstrap Icons -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap-icons.css}">
+    <!-- ✅ Styles -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<section class="container mt-5 d-flex flex-column min-vh-100">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white text-center">
+            <h3 th:text="${titulo}">Nuevo Proveedor</h3>
+        </div>
+
+        <div class="card-body">
+            <form th:action="@{/proveedores/guardarProveedor}" th:object="${proveedor}" method="post">
+                <input type="hidden" th:field="*{id}" />
+
+                <div class="mb-3">
+                    <label class="form-label">Nombre:</label>
+                    <input type="text" th:field="*{nombre}" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Teléfono:</label>
+                    <input type="text" th:field="*{telefono}" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email:</label>
+                    <input type="email" th:field="*{email}" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Dirección:</label>
+                    <input type="text" th:field="*{direccion}" class="form-control" required />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="rubro">Rubro</label>
+                    <input type="text" id="rubro" name="rubro" class="form-control" th:field="*{rubro}"
+                        placeholder="Ej: Materiales eléctricos" required>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success me-2">💾 Guardar</button>
+                    <a th:href="@{/proveedores}" class="btn btn-secondary">↩ Volver</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- 🔹 Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-auto">
+    <div class="container">
+        <small>© 2025 Blue Systems. Todos los derechos reservados.</small>
+    </div>
+</footer>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

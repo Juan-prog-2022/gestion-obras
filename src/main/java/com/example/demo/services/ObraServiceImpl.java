@@ -9,14 +9,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ObraServiceImpl implements ObraService {
-
-    private final ObraRepository obraRepository;
+public class ObraServiceImpl implements IObraService {
 
     @Autowired
-    public ObraServiceImpl(ObraRepository obraRepository) {
-        this.obraRepository = obraRepository;
-    }
+    private ObraRepository obraRepository;
 
     @Override
     public List<Obra> listarTodas() {

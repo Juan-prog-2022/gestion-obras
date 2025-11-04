@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo}">Registrar/Editar Empleado</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-icons.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<section class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white text-center py-3">
+                    <h3 class="mb-0 fw-bold" th:text="${titulo}">Registrar Empleado</h3>
+                </div>
+
+                <div class="card-body bg-light p-4">
+
+                    <form th:action="@{/empleados/guardarEmpleado}" th:object="${empleado}" method="post"
+                          class="needs-validation" novalidate>
+
+                        <input type="hidden" th:field="*{id}" />
+
+                        <!-- Fila 1: Nombre y Apellido -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="nombre" class="form-label fw-semibold">Nombre</label>
+                                <input type="text" th:field="*{nombre}" id="nombre"
+                                       class="form-control shadow-sm" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="apellido" class="form-label fw-semibold">Apellido</label>
+                                <input type="text" th:field="*{apellido}" id="apellido"
+                                       class="form-control shadow-sm" required>
+                            </div>
+                        </div>
+
+                        <!-- Fila 2: Puesto y Salario -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="puesto" class="form-label fw-semibold">Puesto</label>
+                                <input type="text" th:field="*{puesto}" id="puesto"
+                                       class="form-control shadow-sm" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="salario" class="form-label fw-semibold">Salario (ARS)</label>
+                                <input type="number" th:field="*{salario}" id="salario"
+                                       class="form-control shadow-sm" placeholder="Ej. 500000" required>
+                            </div>
+                        </div>
+
+                        <!-- Selector de Obras (fuera de filas anteriores) -->
+                        <div class="mb-4">
+                            <label for="obras" class="form-label fw-semibold">Obras asignadas</label>
+                            <select id="obras" th:field="*{obras}" class="form-select shadow-sm" multiple required>
+                                <option th:each="obra : ${obras}" th:value="${obra.id}" th:text="${obra.nombre}"></option>
+                            </select>
+                            <small class="text-muted">Use Ctrl o Cmd para seleccionar varias obras</small>
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="d-flex justify-content-center gap-3 mt-4">
+                            <button type="submit" class="btn btn-success px-4">💾 Guardar</button>
+                            <a th:href="@{/empleados}" class="btn btn-secondary px-4">↩ Volver</a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-auto">
+    <div class="container">
+        <small>© 2025 Blue Systems. Todos los derechos reservados.</small>
+    </div>
+</footer>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

@@ -23,5 +23,8 @@ public class Cliente {
 
     @NotBlank(message = "El teléfono es obligatorio")
     private String telefono;
+
+    @NotBlank(message = "La dirección es obligatoria")
+    private String direccion;
 }
 
